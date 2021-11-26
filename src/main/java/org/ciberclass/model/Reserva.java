@@ -3,17 +3,17 @@ package org.ciberclass.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
+
 
 @Entity
 public class Reserva {
 	@Id
 	@Column(name = "codigo")
-	 @NotEmpty(message = "Campo codigo obligatorio")
+	
 	private int codigoReserva;
-	 @NotEmpty(message = "Campo nombre obligatorio")
+
 	private String nombre;
-	 @NotEmpty(message = "Campo apellido obligatorio")
+	
 	private String apellido;
 	
 	private int idcarrera ;

@@ -1,6 +1,6 @@
 package org.ciberclass.controller;
 
-import javax.validation.Valid;
+
 
 import org.ciberclass.model.Reserva;
 import org.ciberclass.repository.ICarrerasRepository;
@@ -34,7 +34,7 @@ public class ReservaController {
 	
 	
 	@PostMapping("/grabarReserva")
-	public String grabarReserva(@Valid @ModelAttribute Reserva reserva, Model model, BindingResult result) {
+	public String grabarReserva (@ModelAttribute Reserva reserva, Model model, BindingResult result) {
 		
 		try {
 		

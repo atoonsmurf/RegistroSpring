@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.17.0.final using JasperReports Library version 6.17.0-6d93193241dd8cc42629e188b94f9e0bc5722efd  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_grafico_matricula" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="18c52bcd-f2b2-433c-be1d-3edae4265345">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="conexion-T5AM-ciberfarma"/>
+	<queryString language="SQL">
+		<![CDATA[select c.descripcion as carrera, count(*) as total_matriculas
+from Reserva r join Carreras c on r.idcarrera = c.idcarrera
+group by c.descripcion]]>
+	</queryString>
+	<field name="carrera" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+		<property name="com.jaspersoft.studio.field.label" value="carrera"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="carreras"/>
+	</field>
+	<field name="total_matriculas" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="total_matriculas"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_matriculas"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement x="50" y="20" width="400" height="40" uuid="f6519754-51c6-49d3-bca6-ccdf4fe9d76b"/>
+				<textElement textAlignment="Center" rotation="None">
+					<font fontName="SansSerif" size="22"/>
+				</textElement>
+				<text><![CDATA[Total de matrículas por carrera]]></text>
+			</staticText>
+			<image>
+				<reportElement x="420" y="5" width="160" height="70" uuid="20db346e-2257-48a6-a179-7b195b6bda90"/>
+				<imageExpression><![CDATA["img/matricula.png"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="55" splitType="Stretch">
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="0" y="0" width="100" height="30" uuid="2b95d110-cbf0-4328-8e9c-529344efddd0"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="336" splitType="Stretch">
+			<pie3DChart>
+				<chart evaluationTime="Report">
+					<reportElement x="70" y="60" width="420" height="269" uuid="6404f9b6-3c67-493d-a785-856639f0d7df"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<dataset resetType="Report"/>
+					<keyExpression><![CDATA[$F{carrera}]]></keyExpression>
+					<valueExpression><![CDATA[$F{total_matriculas}]]></valueExpression>
+					<labelExpression><![CDATA[$F{total_matriculas}.toString()]]></labelExpression>
+				</pieDataset>
+				<pie3DPlot>
+					<plot/>
+					<itemLabel/>
+				</pie3DPlot>
+			</pie3DChart>
+			<staticText>
+				<reportElement mode="Opaque" x="180" y="30" width="200" height="30" backcolor="#FCB826" uuid="f003b13f-29d4-420f-8d9f-7d6df0ef3567"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="14"/>
+				</textElement>
+				<text><![CDATA[Gráfico]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
