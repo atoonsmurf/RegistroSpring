@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"> 	<!-- JSTL/ CustomTag-->
+
+<head> 
+
+  <title>Reservas de matrícula online</title> 
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	
+</head>
+
+<body>
+
+	<div style="margin-left: 20%; width: 60%;">
+
+	<h1 class="text-center" style="margin-top: 50px;">Reserva on-line de matrículas</h1>
+	<br/>
+	<form id="formReserva" class="needs-validation" action="/grabarReserva" method="post" th:object="${reserva}" novalidate>
+	<!-- Alerta -->
+		<div class="alert alert-success  alert-dismissible show" role="alert"  th:if="${mensaje}">
+			  <strong  th:text="${mensaje}"></strong> 
+			  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+		</div>
+		
+		  <div class="form-row">
+		    <div class="form-group col-md-6	">
+		      <label >Codigo : </label>
+		      <input  th:field="*{codigoReserva}" class="form-control" placeholder="Ingrese código" type="number" min="1"required>
+		      <div class="invalid-feedback">Campo obligario</div>
+		    </div>
+		     </div>
+		    <div class="form-row">
+		    <div class="form-group col-md-6">
+		      <label >Nombre : </label>
+		      <input th:field="*{nombre}" class="form-control" placeholder="Ingrese nombre" required>
+		      <div class="invalid-feedback">Campo obligario</div>
+		    </div>
+		  </div>
+		  <div class="form-row">
+		  <div class="form-group col-md-6">
+		    <label >Apellido : </label>
+		    <input th:field="*{apellido}"
+		    class="form-control" placeholder="Ingrese Apellido" required>
+		     <div class="invalid-feedback">Campo obligario</div>
+		  </div>
+		   </div>
+		 
+		  <div class="form-row">
+		    <div class="form-group col-md-6">
+		      <label >Carrera : </label>
+		     <select th:field="*{idcarrera}" class="form-control form-select" required >
+		        <option selected disabled th:value="0" th:text="Seleccione..."></option>
+		        <option th:each="c : ${lstCarreras}" 
+		        th:value="${c.idcarrera}" th:text="${c.descripcionCarrera}"></option>    
+		      </select>
+		      <div class="invalid-feedback">Campo obligario</div>
+		    </div>
+		     </div>
+		   
+		    <div class="form-row">
+		  <div class="form-group col-md-6">
+		    <label >Fecha : </label>
+		    <input th:field="*{fecha}" type="date" class="form-control" required>
+		    <div class="invalid-feedback">Campo obligario</div>
+		  </div>
+		   </div>
+		   
+		  <button type="submit" class="btn btn-outline-primary">Registrar</button> |
+		  <a href="#" target="_BLANK" class="btn btn-success">Listar</a> |
+		  <a href="#" target="_BLANK" class="btn btn-warning">PDF Gráfico</a>
+		
+		 
+	</form>
+	</div>
+	<script>
+	// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+	
+</script>	
+	 <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" ></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.11/typed.min.js"></script>
+	
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</html>

@@ -8,6 +8,7 @@ public class DawiCl3SandovalSebastianApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DawiCl3SandovalSebastianApplication.class, args);
+		System.out.println("Terminó de cargar la app");
 	}
 
 }
